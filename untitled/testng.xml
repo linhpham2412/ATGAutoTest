@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Admin/git_repository/ATGAutoTest/untitled/src/test/java/atg/automation/TestCase/Verify_Sorting_Functions_In_Product_Page.java">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="atg.automation.TestCase.Verify_Sorting_Functions_In_Product_Page_">
+                <methods>
+                    <include name="TC_1_Login_And_Test_Sort_by_Name_A_to_Z"/>
+                    <include name="TC_2_Login_And_Test_Sort_by_Name_Z_to_A"/>
+                    <include name="TC_3_Login_And_Test_Sort_by_Price_high_to_low"/>
+                    <include name="TC_4_Login_And_Test_Sort_by_Price_low_to_high"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

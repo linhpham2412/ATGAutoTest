@@ -1,0 +1,6 @@
+{
+  "environment": "test",
+  "test": {
+    "url": "https://www.saucedemo.com/"
+  }
+}
