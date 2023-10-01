@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true"
-          name="C:/Users/Admin/git_repository/ATGAutoTest/untitled/src/test/java/atg/automation/TestCase/Verify_Sorting_Functions_In_Product_Page.java">
+          name="C:/Users/Admin/git_repository/ATGAutoTest/untitled/src/test/java/atg/automation/TestCase/Verify_Sorting_Functions_In_Product_Page_.java">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="atg.automation.TestCase.Verify_Sorting_Functions_In_Product_Page_">
@@ -11,6 +11,33 @@
                     <include name="TC_2_Login_And_Test_Sort_by_Name_Z_to_A"/>
                     <include name="TC_3_Login_And_Test_Sort_by_Price_high_to_low"/>
                     <include name="TC_4_Login_And_Test_Sort_by_Price_low_to_high"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Admin/git_repository/ATGAutoTest/untitled/src/test/java/atg/automation/TestCase/Verify_Error_Handling_In_LoginPage_and_CheckoutPage_.java">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="atg.automation.TestCase.Verify_Error_Handling_In_LoginPage_and_CheckoutPage_">
+                <methods>
+                    <include name="TC_1_Verify_UserName_Field_Error_Handling_In_Login_Page"/>
+                    <include name="TC_2_Verify_Password_Field_Error_Handling_In_Login_Page"/>
+                    <include name="TC_3_Verify_Locked_User_Error_Handling_In_Login_Page"/>
+                    <include name="TC_4_Verify_Empty_Checkout_Fields_Error_Handling_In_Checkout_Page"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Admin/git_repository/ATGAutoTest/untitled/src/test/java/atg/automation/TestCase/Verify_Checkout_Calculation_and_Proceed_.java">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="atg.automation.TestCase.Verify_Checkout_Calculation_and_Proceed_">
+                <methods>
+                    <include name="TC_1_AddToCart_Random_Product_Proceed_To_ShoppingCart_And_CheckoutTwoPage_To_Verify_Product_Added_Correctly"/>
+                    <include name="TC_2_AddToCart_Random_Product_Proceed_To_CheckoutPage_To_Verify_Tax_and_Total_Calculation"/>
+                    <include name="TC_3_AddToCart_Random_Product_Proceed_To_Checkout_Successfully"/>
                 </methods>
             </class>
         </classes>
