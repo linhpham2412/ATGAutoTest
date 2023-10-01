@@ -7,14 +7,14 @@ import org.testng.annotations.Test;
 
 public class Verify_Error_Handling_In_LoginPage_and_CheckoutPage_ extends WebDriverTestNGSetupBase {
 
+    /**
+     * Test case to test error handling of required Username text field
+     */
     @Test(alwaysRun = true)
     public void TC_1_Verify_UserName_Field_Error_Handling_In_Login_Page() {
         SwagLabsLoginPage swagLabsLoginPage = new SwagLabsLoginPage(getDriver(), getTestContext());
 
         //Steps
-        /*
-        Input blank username then click login and verify error message
-         */
         swagLabsLoginPage
                 .openLoginPage()
                 .inputUserNameTextFieldWithValue("")
@@ -22,6 +22,9 @@ public class Verify_Error_Handling_In_LoginPage_and_CheckoutPage_ extends WebDri
                 .verifyErrorMessageDisplayValue("Epic sadface: Username is required");
     }
 
+    /**
+     * Test case to test error handling of password blank test field
+     */
     @Test(alwaysRun = true)
     public void TC_2_Verify_Password_Field_Error_Handling_In_Login_Page() {
         SwagLabsLoginPage swagLabsLoginPage = new SwagLabsLoginPage(getDriver(), getTestContext());
@@ -38,14 +41,14 @@ public class Verify_Error_Handling_In_LoginPage_and_CheckoutPage_ extends WebDri
                 .verifyErrorMessageDisplayValue("Epic sadface: Password is required");
     }
 
+    /**
+     * Test case to test error handling of locked user log in
+     */
     @Test(alwaysRun = true)
     public void TC_3_Verify_Locked_User_Error_Handling_In_Login_Page() {
         SwagLabsLoginPage swagLabsLoginPage = new SwagLabsLoginPage(getDriver(), getTestContext());
 
         //Steps
-        /*
-        Input locked username and password then click login and verify error message
-         */
         swagLabsLoginPage
                 .openLoginPage()
                 .inputUserNameTextFieldWithValue("locked_out_user")
@@ -54,13 +57,16 @@ public class Verify_Error_Handling_In_LoginPage_and_CheckoutPage_ extends WebDri
                 .verifyErrorMessageDisplayValue("Epic sadface: Sorry, this user has been locked out.");
     }
 
+    /**
+     * Test case to test error handling of FirstName, LastName and PostalCode fields in checkout page
+     */
     @Test(alwaysRun = true)
     public void TC_4_Verify_Empty_Checkout_Fields_Error_Handling_In_Checkout_Page() {
         SwagLabsLoginPage swagLabsLoginPage = new SwagLabsLoginPage(getDriver(), getTestContext());
         SwagLabsProductsPage swagLabsProductsPage = new SwagLabsProductsPage(getDriver(), getTestContext());
         SwagLabsShoppingCartPage swagLabsShoppingCartPage = new SwagLabsShoppingCartPage(getDriver(), getTestContext());
         SwagLabsCheckoutPage swagLabsCheckoutPage = new SwagLabsCheckoutPage(getDriver(), getTestContext());
-        SwagLabsCheckoutStepTwoPage swagLabsCheckoutStepTwoPage = new SwagLabsCheckoutStepTwoPage(getDriver(),getTestContext());
+        SwagLabsCheckoutStepTwoPage swagLabsCheckoutStepTwoPage = new SwagLabsCheckoutStepTwoPage(getDriver(), getTestContext());
 
         //Steps
         /*
@@ -91,10 +97,26 @@ public class Verify_Error_Handling_In_LoginPage_and_CheckoutPage_ extends WebDri
                 .inputLastNameFieldWithValue(Utils.generateRandomTestCharacters(10))
                 .clickContinueButton()
                 .verifyErrorMessageDisplayValue("Error: Postal Code is required")
-                .inputPostalCodeFieldWithValue(Utils.generateRandomNumberInRange(1,1000))
+                .inputPostalCodeFieldWithValue(Utils.generateRandomNumberInRange(1, 1000))
                 .clickContinueButton();
 
         swagLabsCheckoutStepTwoPage
                 .verifyCheckoutStepTwoPageTitleIs("Checkout: Overview");
+    }
+
+    /**
+     * Test case to test error handling of incorrect password blank test field
+     */
+    @Test(alwaysRun = true)
+    public void TC_5_Verify_Incorrect_Password_Field_Error_Handling_In_Login_Page() {
+        SwagLabsLoginPage swagLabsLoginPage = new SwagLabsLoginPage(getDriver(), getTestContext());
+
+        //Steps
+        swagLabsLoginPage
+                .openLoginPage()
+                .inputUserNameTextFieldWithValue("standard_user")
+                .inputPasswordTextFieldWithValue("incorrect_password")
+                .clickLoginButton()
+                .verifyErrorMessageDisplayValue("Epic sadface: Username and password do not match any user in this service");
     }
 }
