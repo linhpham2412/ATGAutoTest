@@ -25,6 +25,7 @@
                     <include name="TC_2_Verify_Password_Field_Error_Handling_In_Login_Page"/>
                     <include name="TC_3_Verify_Locked_User_Error_Handling_In_Login_Page"/>
                     <include name="TC_4_Verify_Empty_Checkout_Fields_Error_Handling_In_Checkout_Page"/>
+                    <include name="TC_5_Verify_Incorrect_Password_Field_Error_Handling_In_Login_Page"/>
                 </methods>
             </class>
         </classes>

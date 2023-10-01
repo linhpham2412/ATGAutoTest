@@ -29,7 +29,7 @@ public class SwagLabsProductsPage extends ActionManager {
     //Function
 
     /**
-     * function to verify current product page title with the expected one
+     * Function to verify current product page title with the expected one
      *
      * @param expectedPageTitle expected title to compare with the actual one
      * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
@@ -41,6 +41,12 @@ public class SwagLabsProductsPage extends ActionManager {
         return this;
     }
 
+    /**
+     * Function to verify value in Active sort field
+     *
+     * @param expectedActiveSort expected active sort text
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage verifyProductPageActiveSortIs(String expectedActiveSort) {
         waitForElementVisible(swagLabsProductPage_SortContainerActiveOptions);
         String actualActiveSort = getText(swagLabsProductPage_SortContainerActiveOptions);
@@ -48,6 +54,13 @@ public class SwagLabsProductsPage extends ActionManager {
         return this;
     }
 
+    /**
+     * Function to check value Image source by index in the container
+     *
+     * @param expectedImageSource value of expected image source
+     * @param containerIndex      index of the product in the product container
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage verifyProductPageImageSourceByIndex(String expectedImageSource, String containerIndex) {
         String imageElementXPathToCheck = swagLabsProductPage_InventoryImageNameByIndex.formatted(containerIndex);
         waitForElementVisible(imageElementXPathToCheck);
@@ -56,6 +69,13 @@ public class SwagLabsProductsPage extends ActionManager {
         return this;
     }
 
+    /**
+     * Function to check Product Name by product index in page container
+     *
+     * @param expectedItemName expected value of product name
+     * @param containerIndex   index of the product in the product container
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage verifyProductPageItemNameByIndex(String expectedItemName, String containerIndex) {
         String itemElementXPathToCheck = swagLabsProductPage_InventoryItemNameByIndex.formatted(containerIndex);
         waitForElementVisible(itemElementXPathToCheck);
@@ -64,6 +84,13 @@ public class SwagLabsProductsPage extends ActionManager {
         return this;
     }
 
+    /**
+     * Function to check product price by product index in page container
+     *
+     * @param expectedItemPrice expected value of product price
+     * @param containerIndex    index of the product in the product container
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage verifyProductPageItemPriceByIndex(String expectedItemPrice, String containerIndex) {
         String itemElementXPathToCheck = swagLabsProductPage_InventoryItemPriceByIndex.formatted(containerIndex);
         waitForElementVisible(itemElementXPathToCheck);
@@ -72,7 +99,14 @@ public class SwagLabsProductsPage extends ActionManager {
         return this;
     }
 
+    /**
+     * Function to click on the action sort dropdown box then select the value in param
+     *
+     * @param sortName name of the sort user want to select
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage changeProductPageSortingToValue(String sortName) {
+        //Based on the sort name provided switch to value name of option elements in the dropdown
         String sortValue = switch (sortName) {
             case "Name (A to Z)" -> "az";
             case "Name (Z to A)" -> "za";
@@ -85,22 +119,37 @@ public class SwagLabsProductsPage extends ActionManager {
         return this;
     }
 
+    /**
+     * Function to perform click action on Shopping Cart button
+     *
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage clickShoppingCartButton() {
         waitForElementClickable(swagLabsProductPage_ShoppingCartContainer);
         click(swagLabsProductPage_ShoppingCartContainer);
         return this;
     }
 
+    /**
+     * Function to randomly add number of product provided in param to the shopping cart
+     *
+     * @param numberOfProducts total number of random products user want to add to shopping cart (maximum is 6)
+     * @return return object SwagLabsProductsPage to be able to continue call other functions in test case class
+     */
     public SwagLabsProductsPage randomlyAddNumberOfProductsInCart(int numberOfProducts) {
         //if number provided bigger than 6 set to 6
         numberOfProducts = Math.min(numberOfProducts, 6);
+        //Save total number of products added to cart for later check
         TestContext.setAttribute("numberOfAddedProduct", String.valueOf(numberOfProducts));
+        //Create a list then shuffle to get random order of value in list then select number of products from left to right
         Integer[] productIndexArray = {1, 2, 3, 4, 5, 6};
         List<Integer> productIndexList = new ArrayList<>(Arrays.asList(productIndexArray));
         Collections.shuffle(productIndexList);
         List<Integer> randomProductIndexList = productIndexList.subList(0, numberOfProducts);
+        //Create index variable to save to testcontext object as key
         AtomicInteger productIndexWhenSaveToTestContext = new AtomicInteger();
-        randomProductIndexList.forEach(product->{
+        //Go through each index in shorten list to add product to cart and also save product name, price to testcontext for later check
+        randomProductIndexList.forEach(product -> {
             String addToCartProduct = swagLabsProductPage_AddToCartButtonByIndex.formatted(product.toString());
             waitForElementClickable(addToCartProduct);
             click(addToCartProduct);
@@ -108,7 +157,7 @@ public class SwagLabsProductsPage extends ActionManager {
             addedProductNameAndPriceInCart.add(getText(swagLabsProductPage_InventoryItemNameByIndex.formatted(product.toString())));
             addedProductNameAndPriceInCart.add(getText(swagLabsProductPage_InventoryItemPriceByIndex.formatted(product.toString())));
             productIndexWhenSaveToTestContext.getAndIncrement();
-            TestContext.setContextObjectsWithName(productIndexWhenSaveToTestContext.toString(),addedProductNameAndPriceInCart);
+            TestContext.setContextObjectsWithName(productIndexWhenSaveToTestContext.toString(), addedProductNameAndPriceInCart);
         });
         return this;
     }
