@@ -30,6 +30,10 @@ public class WebDriverCreator {
             options.addArguments("--no-sandbox"); // Bypass OS security model
             options.addArguments("--remote-allow-origins=*");
             driver = new ChromeDriver(options);
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            System.setProperty("webdriver.gecko.driver", webDriverLocation + "geckodriver.exe");
+            FirefoxOptions options = new FirefoxOptions().setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe").setAcceptInsecureCerts(true);
+            driver = new FirefoxDriver(options);
         }
         System.out.println("Local driver and run on browser [" + browser + "]");
         return driver;
